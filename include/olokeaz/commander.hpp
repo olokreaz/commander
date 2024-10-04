@@ -1,12 +1,7 @@
 #ifndef COMMAND_HPP
 #define COMMAND_HPP
 
-#include <fmt/format.h>
-#include <fmt/ranges.h>
-#include <fmt/std.h>
-#include <plog/Log.h>
 #include <scn/scan.h>
-#include <concepts>
 #include <ctre.hpp>
 #include <fixed_string.hpp>
 #include <string>
@@ -17,7 +12,7 @@ namespace ox {
 	namespace detail {
 		constexpr std::string_view extract_name ( const std::string_view fmt )
 		{
-			constexpr auto pattern = ctll::fixed_string { R"(^(\w+).*)" }; // example: <prefix><command> [args]
+			constexpr auto pattern = ctll::fixed_string { R"(^(\w+).*)" };
 
 			if ( fmt.empty ( ) ) return "";
 
