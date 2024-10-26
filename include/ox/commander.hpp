@@ -48,8 +48,6 @@ namespace ox {
 			ctx_t  m_context;
 			args_t m_args;
 
-			constexpr std::string_view m_name = detail::extract_name ( FMT );
-
 		protected:
 			ImplCommand ( ) = default;
 
@@ -82,7 +80,7 @@ namespace ox {
 			}
 			constexpr virtual inline std::string_view name ( ) override
 			{
-				return m_name;
+				return detail::extract_name ( FMT );
 			}
 			constexpr virtual inline std::string_view usage ( ) override
 			{
@@ -122,7 +120,7 @@ namespace ox {
 			this->m_registered_commands[ pcom->name ( ) ] = std::move ( pcom );
 		}
 
-		template< class Type, class... Args > inline void create_command ( const Args& args )
+		template< class Type, class... Args > inline void create_command ( const Args&... args )
 		{
 			this->create_command ( std::make_unique< Type > ( args... ) );
 		}
